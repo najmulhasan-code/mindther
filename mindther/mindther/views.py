@@ -16,7 +16,7 @@ def chatbot(request):
         prompt = user_input
 
         response = openai.ChatCompletion.create(
-            model='gpt-3.5-turbo',
+            model='text-da',
             prompt='prompt',
             max_tokens=256,
             stop="stop",
