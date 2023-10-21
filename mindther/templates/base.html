@@ -1,1 +1,11 @@
 #this is the template for our web app
+{% block content %}
+
+<h2>Prompt:</h2>
+
+<form method="post">
+    {% csrf_token %}
+    <input type="text" cass "form-control" name="user_input">
+    <button type="submit" class="btn-primary mt-3">submit</button>
+
+{% endblock content %}
