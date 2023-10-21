@@ -17,11 +17,11 @@ def chatbot(request):
         prompt = user_input
 
         response = openai.ChatCompletion.create(
-            model="gpt-3.5-turbo",
+            model="ft:gpt-3.5-turbo-0613:personal::8C8J0s2v",
             messages=[
 
                 {"role": "system",
-                 "content": "Be Friendly: Use casual, be a friend, relatable language. Say What's up? not How are you "
+                 "content": "Be Friendly: Use casual, relatable language. Say What's up? not How are you "
                             "today? Stay"
                             "Upbeat: Be positive. Use emojis and phrases like You got this! Listen Up: Reference past "
                             "chat and validate feelings. Use phrases like I hear you. No Triggers: Don't bring up "
