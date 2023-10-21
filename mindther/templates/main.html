@@ -13,6 +13,11 @@
     </form>
 
     <script>
+        function scrollToBottom() {
+            let chatbox = document.getElementById('chatbox');
+            chatbox.scrollTop = chatbox.scrollHeight;
+        }
+
         document.getElementById('chatForm').addEventListener('submit', function(event) {
             event.preventDefault();
 
@@ -24,8 +29,9 @@
                 return;
             }
 
-            // Append user's message to chatbox
+            // Append user's message to chatbox and scroll
             chatbox.innerHTML += `<div style="clear: both;"><p class="user-message">${userInput}</p></div>`;
+            scrollToBottom();
 
             fetch('/', {
                 method: 'POST',
@@ -33,7 +39,10 @@
             })
             .then(response => response.json())
             .then(data => {
+                // Append assistant's message to chatbox and scroll
                 chatbox.innerHTML += `<div style="clear: both;"><p class="assistant-message">${data.response}</p></div>`;
+                scrollToBottom();
+
                 document.getElementById('user_input').value = '';  // Clear the input field
             })
             .catch(error => {
