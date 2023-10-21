@@ -16,14 +16,6 @@ def chatbot(request):
         user_input = request.POST.get('user_input')
         prompt = user_input
 
-<<<<<<< Updated upstream
-        response = openai.Completion.create(
-            engine='text-davinci-003',
-            prompt='prompt',
-            max_tokens=256,
-            stop="stop",
-            temperature=1,
-=======
         response = openai.ChatCompletion.create(
             model="gpt-3.5-turbo",
             messages=[
@@ -49,8 +41,6 @@ def chatbot(request):
                 {"role": "user", "content": prompt},
 
             ]
-    
->>>>>>> Stashed changes
         )
         chatbot_response = response.choices[0].message['content']
         return JsonResponse({'response': chatbot_response})
