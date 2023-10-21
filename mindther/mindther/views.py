@@ -21,5 +21,5 @@ def chatbot(request):
             temprature=0.5,
         )
         print(response)
-    return render(request, 'base.html', {}
+    return render(request, 'main.html', {}
     )
