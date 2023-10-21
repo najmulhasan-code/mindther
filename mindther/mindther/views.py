@@ -14,8 +14,8 @@ def chatbot(request):
         prompt=user_input
         
         response=openai.ChatCompletion.create(
-            engine='gpt-3.5-turbo',
-            prompt=prompt,
+            model='gpt-3.5-turbo',
+            prompt='prompt',
             max_tokens=256,
             stop="stop",
             temprature=0.5,
