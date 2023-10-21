@@ -1,11 +1,110 @@
-#this is the template for our web app
-{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <title>Chatbot Assistant</title>
 
-<h2>Prompt:</h2>
+    <!-- Styling for the chat interface -->
+    <style>
+        body {
+            background: linear-gradient(315deg, #ff00bf, #ffc371);
+            font-family: Arial, sans-serif;
+        }
 
-<form method="post">
-    {% csrf_token %}
-    <input type="text" class "form-control" name="user_input">
-    <button type="submit" class="btn-primary mt-3">submit</button>
-</form>
-{% endblock content %}
+        .chat-container {
+            max-width: 600px;
+            margin: auto;
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .chatbox {
+            border: 1px solid #ccc;
+            padding: 20px;
+            height: 400px;
+            overflow-y: auto;
+            margin-bottom: 15px;
+        }
+
+        .user-message {
+            background-color: gray;
+            color: white;
+            border-radius: 10px;
+            padding: 8px;
+            display: inline-block;
+            max-width: 80%;
+            margin: 5px 0;
+        }
+
+        .assistant-message {
+            background-color: black;
+            color: white;
+            border-radius: 10px;
+            padding: 8px;
+            display: inline-block;
+            max-width: 80%;
+            margin: 5px 0;
+            float: right;
+            clear: both;
+        }
+
+        #user_input {
+            border-radius: 25px;
+            padding-left: 15px;
+            padding-right: 40px;
+            outline: none;
+        }
+
+        #sendIcon {
+            position: absolute;
+            right: 25px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            z-index: 1;
+        }
+
+        .logo {
+            text-align: center;
+            font-size: 2.5em;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #fff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .logo span.mind {
+            color: #3A8DFF;
+        }
+
+        .logo span.ther {
+            color: #4CAF50;
+        }
+
+        .logo i {
+            color: #FFC107;
+            margin-left: 10px;
+        }
+
+        .container {
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="logo">
+        <span class="mind">Mind</span><span class="ther">Ther</span><i class="fas fa-hands-helping"></i>
+    </div>
+    {% block content %}
+    {% endblock content %}
+</div>
+
+</body>
+</html>

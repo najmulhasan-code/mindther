@@ -1,1 +1,40 @@
 {% extends "base.html" %}
+
+{% block content %}
+<div class="chat-container">
+    <div id="chatbox" class="chatbox mt-3">
+        <!-- Chat messages will be added here -->
+    </div>
+
+    <form id="chatForm" method="post" style="position: relative;">
+        {% csrf_token %}
+        <input type="text" class="form-control" id="user_input" name="user_input" placeholder="Type your message...">
+        <button type="submit" style="border: none; background: none; position: absolute; right: 10px; top: 50%; transform: translateY(-50%);" id="sendIcon"><i class="fas fa-paper-plane" style="color: #ff00bf;"></i></button>
+    </form>
+
+    <script>
+        document.getElementById('chatForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            let userInput = document.getElementById('user_input').value;
+            let chatbox = document.getElementById('chatbox');
+
+            // Append user's message to chatbox
+            chatbox.innerHTML += `<p class="user-message">${userInput}</p>`;
+
+            fetch('/', {
+                method: 'POST',
+                body: new FormData(this)
+            })
+            .then(response => response.json())
+            .then(data => {
+                chatbox.innerHTML += `<p class="assistant-message">${data.response}</p>`;
+                document.getElementById('user_input').value = '';  // Clear the input field
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        });
+    </script>
+</div>
+{% endblock content %}
