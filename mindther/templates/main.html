@@ -19,8 +19,13 @@
             let userInput = document.getElementById('user_input').value;
             let chatbox = document.getElementById('chatbox');
 
+            // Check if the input is empty
+            if(userInput.trim() === "") {
+                return;
+            }
+
             // Append user's message to chatbox
-            chatbox.innerHTML += `<p class="user-message">${userInput}</p>`;
+            chatbox.innerHTML += `<div style="clear: both;"><p class="user-message">${userInput}</p></div>`;
 
             fetch('/', {
                 method: 'POST',
@@ -28,7 +33,7 @@
             })
             .then(response => response.json())
             .then(data => {
-                chatbox.innerHTML += `<p class="assistant-message">${data.response}</p>`;
+                chatbox.innerHTML += `<div style="clear: both;"><p class="assistant-message">${data.response}</p></div>`;
                 document.getElementById('user_input').value = '';  // Clear the input field
             })
             .catch(error => {

@@ -86,9 +86,31 @@
             color: #4CAF50;
         }
 
-        .logo i {
-            color: #FFC107;
-            margin-left: 10px;
+        .logo-brain {
+            position: relative;
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        .logo-brain .fas.fa-brain {
+            font-size: 1.5em;
+        }
+
+        .logo-eye {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background-color: #000;
+            border-radius: 50%;
+            top: 30%;
+        }
+
+        .logo-eye.left {
+            left: 25%;
+        }
+
+        .logo-eye.right {
+            right: 25%;
         }
 
         .container {
@@ -100,7 +122,12 @@
 
 <div class="container">
     <div class="logo">
-        <span class="mind">Mind</span><span class="ther">Ther</span><i class="fas fa-hands-helping"></i>
+        <span class="mind">Mind</span><span class="ther">Ther</span>
+        <span class="logo-brain">
+            <i class="fas fa-brain"></i>
+            <span class="logo-eye left"></span>
+            <span class="logo-eye right"></span>
+        </span>
     </div>
     {% block content %}
     {% endblock content %}
