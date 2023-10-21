@@ -15,12 +15,12 @@ def chatbot(request):
         user_input = request.POST.get('user_input')
         prompt = user_input
 
-        response = openai.ChatCompletion.create(
-            model='text-da',
+        response = openai.Completion.create(
+            engine='text-davinci-003',
             prompt='prompt',
             max_tokens=256,
             stop="stop",
-            temprature=0.5,
+            temperature=1,
         )
         print(response)
     return render(request, 'main.html', {})
