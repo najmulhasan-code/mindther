@@ -43,8 +43,10 @@ def chatbot(request):
         off_topic_keywords = ["cake", "bake", "car", "computer"]
         if any(keyword in chatbot_response.lower() for keyword in off_topic_keywords):
             chatbot_response = "I'm here to help with mental health concerns. If you have questions related to that, please let me know. It's essential to focus on your well-being."
+            
             # Update messages list with the bot's message
             update_chat(messages, "assistant", chatbot_response)
+
 
         return JsonResponse({'response': chatbot_response})
     return render(request, 'main.html', {})
