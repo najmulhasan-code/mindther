@@ -49,7 +49,5 @@ def chatbot(request):
 
 
         return JsonResponse({'response': chatbot_response})
+
     return render(request, 'main.html', {})
-
-
- 
