@@ -6,101 +6,114 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <title>Chatbot Assistant</title>
-
     <style>
         body {
-            background: linear-gradient(135deg, #4a90e2, #343a40);
+            background: #282c36;
             font-family: 'Arial', sans-serif;
         }
-
+        
         .chat-container {
             max-width: 900px;
             margin: auto;
-            background-color: #2596be;
+            background-color: #343a40;
             border-radius: 20px;
             padding: 20px;
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.2);
         }
-
+        
         .chatbox {
-
-            border: none; 
-            opacity: 1;
-            background-color: #e6ebee; 
+            border: none;
+            background-color: #2c3138;
             padding: 20px;
             height: 430px;
             overflow-y: auto;
             margin-bottom: 20px;
             border-radius: 15px;
         }
-
+        
+        .user-message, .assistant-message {
+            border-radius: 20px;
+            padding: 12px 20px;
+            display: inline-block;
+            max-width: 80%;
+            margin: 7px 0;
+            position: relative;
+        }
+        
         .user-message {
-            background-color: #4a90e2;
-            color: white;
-            border-radius: 15px;
-            padding: 10px 15px;
-            display: inline-block;
-            max-width: 82%;
-            margin: 7px 0;
+            background-color: #007bff;
+            color: #fff;
+            margin-right: auto;
         }
-
+        
         .assistant-message {
-            background-color: #868e96;
-            color: white;
-            border-radius: 15px;
-            padding: 10px 15px;
-            display: inline-block;
-            max-width: 82%;
-            margin: 7px 0;
+            background-color: #6c757d;
+            color: #fff;
+            margin-left: auto;
             float: right;
-            clear: both;
         }
-
+        
         #user_input {
-            border-radius: 30px;
-            padding-left: 18px;
-            padding-right: 45px;
-            border: 1px solid #e0e4e8;
+            border-radius: 25px;
+            padding: 10px 40px;
+            border: 1px solid #4a4f58;
+            color: #d4d4d4;
+            background-color: #2c3138;
+        }
+        
+        #user_input::placeholder {
+            color: #777;
+        }
+        
+        #user_input:focus {
+            border-color: #007bff;
             outline: none;
         }
-
+        
         #sendIcon {
             position: absolute;
-            right: 30px;
+            right: 10px;
             top: 50%;
             transform: translateY(-50%);
             cursor: pointer;
-            z-index: 1;
-            color: #135deg;
+            font-size: 1.5em;
+            color: #007bff;
+            background: none;
+            border: none;
+            transition: color 0.2s;
         }
-
+        
+        #sendIcon:hover {
+            color: #0056b3;
+        }
+        
         .logo {
             text-align: center;
-            font-size: 2.8em;
+            font-size: 2.5em;
             font-weight: bold;
             margin-bottom: 25px;
-            color: #5CA0DF;
-            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+            color: #d4d4d4;
+            position: relative;
         }
-
+        
         .logo span.mind {
-            color: #4a90e2;
+            color: #007bff;
         }
-
+        
         .logo span.ther {
-            color: #868e96;
+            color: #6c757d;
         }
-
+        
         .logo-brain {
             position: relative;
             display: inline-block;
             vertical-align: middle;
         }
-
+        
         .logo-brain .fas.fa-brain {
             font-size: 1.7em;
         }
-
+        
         .logo-eye {
             position: absolute;
             width: 9px;
@@ -109,17 +122,13 @@
             border-radius: 50%;
             top: 28%;
         }
-
+        
         .logo-eye.left {
             left: 23%;
         }
-
+        
         .logo-eye.right {
             right: 23%;
-        }
-
-        .container {
-            margin-top: 50px;
         }
     </style>
 </head>
