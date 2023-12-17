@@ -9,10 +9,26 @@
     <form id="chatForm" method="post" style="position: relative;">
         {% csrf_token %}
         <input type="text" class="form-control" id="user_input" name="user_input" placeholder="Type your message...">
-        <button type="submit" style="border: none; background: none; position: absolute; right: 10px; top: 50%; transform: translateY(-50%);" id="sendIcon"><i class="fas fa-paper-plane" style="color: #ff00bf;"></i></button>
+        <button type="submit" style="border: none; background: none; position: absolute; right: 10px; top: 50%; transform: translateY(-50%);" id="sendIcon"><i class="fas fa-paper-plane" style="color: #695ff9;"></i></button>
     </form>
 
     <script>
+
+        function addCopyFeature() {
+            // Copy text function
+            document.querySelectorAll('.assistant-message').forEach(function(msg) {
+                msg.addEventListener('click', function() {
+                    navigator.clipboard.writeText(msg.textContent).then(() => {
+                        // Tooltip content change on copy
+                        msg.querySelector('.copy-tooltip').textContent = 'Copied!';
+                        setTimeout(() => {
+                            msg.querySelector('.copy-tooltip').textContent = 'Copy';
+                        }, 2000);
+                    });
+                });
+            });
+        }
+
         function scrollToBottom() {
             let chatbox = document.getElementById('chatbox');
             chatbox.scrollTop = chatbox.scrollHeight;
@@ -28,8 +44,11 @@
                 return;
             }
 
-            chatbox.innerHTML += `<div style="clear: both;"><p class="user-message">${userInput}</p></div>`;
-            scrollToBottom();
+            chatbox.innerHTML += `
+                <div style="clear: both; text-align: left;">
+                    <div class="message-tag">You</div>
+                    <p class="user-message">${userInput}</p>
+                </div>`;
 
             fetch('/', {
                 method: 'POST',
@@ -38,8 +57,13 @@
             .then(response => response.json())
             .then(data => {
                
-                chatbox.innerHTML += `<div style="clear: both;"><p class="assistant-message">${data.response}</p></div>`;
+                chatbox.innerHTML += `
+                    <div style="clear: both; text-align: right; position: relative;">
+                        <div class="message-tag">BetterAI</div>
+                        <p class="assistant-message">${data.response}<span class="copy-tooltip">Copy</span></p>
+                    </div>`;
                 scrollToBottom();
+                addCopyFeature();
 
                 document.getElementById('user_input').value = '';  // Clear the input field
             })
